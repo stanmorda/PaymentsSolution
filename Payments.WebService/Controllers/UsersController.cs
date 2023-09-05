@@ -30,4 +30,5 @@ public class UsersController : ControllerBase
         user = await _paymentsManager.CreateUser(user);
         return Ok(user);
     }
+    
 }

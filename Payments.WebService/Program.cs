@@ -18,6 +18,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPaymentsManager();
 
+
+#region 1. Enable session mechanism
+builder.Services.AddSession();
+builder.Services.AddDistributedMemoryCache();
+#endregion
+
+
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
