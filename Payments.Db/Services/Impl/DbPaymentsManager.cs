@@ -1,12 +1,13 @@
-﻿using Payments.Model.Models;
+﻿using Payments.Db.Services;
+using Payments.Model.Models;
 
 namespace Payments.Db;
 
-public class PaymentsManager
+public class DbPaymentsManager : IPaymentsManager
 {
     private readonly PaymentsDbContext _paymentsDbContext;
 
-    public PaymentsManager(PaymentsDbContext paymentsDbContext)
+    public DbPaymentsManager(PaymentsDbContext paymentsDbContext)
     {
         _paymentsDbContext = paymentsDbContext;
     }

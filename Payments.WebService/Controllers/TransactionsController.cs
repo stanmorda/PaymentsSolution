@@ -8,25 +8,25 @@ namespace Payments.WebService.Controllers;
 [ApiController]
 public class TransactionsController : ControllerBase
 {
-    private readonly PaymentsManager _paymentsManager;
+    private readonly DbPaymentsManager _dbPaymentsManager;
 
-    public TransactionsController(PaymentsManager paymentsManager)
+    public TransactionsController(DbPaymentsManager dbPaymentsManager)
     {
-        _paymentsManager = paymentsManager;
+        _dbPaymentsManager = dbPaymentsManager;
     }
 
     [HttpGet]
     [Route("{userId}")]
     public ActionResult<Transaction[]> GetTransactionsByUserId(int userId)
     {
-        return Ok(_paymentsManager.GetTransactionsByUserId(userId));
+        return Ok(_dbPaymentsManager.GetTransactionsByUserId(userId));
     }
 
     [HttpPost]
     [Route("createTransaction")]
     public async Task<ActionResult<Transaction>> CreateTransaction(Transaction transaction)
     {
-        transaction = await _paymentsManager.CreateTransaction(transaction);
+        transaction = await _dbPaymentsManager.CreateTransaction(transaction);
         return Ok(transaction);
     }
 }

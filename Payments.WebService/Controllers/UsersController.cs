@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Payments.Db;
+using Payments.Db.Services;
 using Payments.Model.Models;
 
 namespace Payments.WebService.Controllers;
@@ -8,9 +9,9 @@ namespace Payments.WebService.Controllers;
 [ApiController]
 public class UsersController : ControllerBase
 {
-    private readonly PaymentsManager _paymentsManager;
+    private readonly IPaymentsManager _paymentsManager;
 
-    public UsersController(PaymentsManager paymentsManager)
+    public UsersController(IPaymentsManager paymentsManager)
     {
         _paymentsManager = paymentsManager;
     }
