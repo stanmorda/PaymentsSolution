@@ -1,13 +1,18 @@
 ﻿using System.Security.Authentication;
 
-namespace Payments.WebService;
+namespace TestDIApi;
 
 public class SessionStore
 {
 
     private Dictionary<string, string> _users;
-
     private Dictionary<string, string> _sessions = new ();
+
+
+    public SessionStore()
+    {
+        InitUsers();
+    }
 
     /// <summary>
     /// 2. Get users from Db
@@ -35,7 +40,7 @@ public class SessionStore
             if (string.Equals(pass, password))
             {
 
-                var session = new Guid().ToString();
+                var session = Guid.NewGuid().ToString();
                 _sessions[login] = session;
                 return session;
             }
@@ -43,5 +48,10 @@ public class SessionStore
 
         throw new AuthenticationException("Not authorize");
     }
-    
+
+    public bool CheckSession(string session)
+    {
+        return _sessions.Values.Contains(session);
+    }
+
 }

@@ -46,4 +46,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+app.Map("/users", HandlerUsersMap);
+
+
+static void HandlerUsersMap(IApplicationBuilder app)
+{
+    app.Run(async context =>
+    {
+        if (context.Request.Headers.ContainsKey("mykey"))
+        {
+             await context.Response.WriteAsync("UNAUTORIZE");
+        }
+    });
+}
 app.Run();
